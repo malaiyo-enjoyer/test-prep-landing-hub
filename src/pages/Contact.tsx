@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import { Users, Book, FileText, Calendar } from "lucide-react";
+import { Users, Book, FileText, Calendar, Mail, Phone } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -38,8 +38,8 @@ const Contact = () => {
                       </div>
                       <div>
                         <h4 className="font-medium text-navy">Email Address</h4>
-                        <p className="text-gray-600">info@academitest.com</p>
-                        <p className="text-gray-600">support@academitest.com</p>
+                        <p className="text-gray-600">info@entrancevault.com</p>
+                        <p className="text-gray-600">support@entrancevault.com</p>
                       </div>
                     </div>
 
@@ -95,7 +95,7 @@ const Contact = () => {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-navy mb-4">Why Educational Institutions Choose Us</h2>
               <p className="text-gray-600 max-w-3xl mx-auto">
-                Join over 100+ institutes that have transformed their exam success rates with AcademiTest
+                Join over 100+ institutes that have transformed their exam success rates with Entrancevault
               </p>
             </div>
 

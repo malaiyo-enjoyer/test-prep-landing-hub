@@ -10,7 +10,7 @@ const Footer = () => {
           <div>
             <Link to="/" className="flex items-center">
               <span className="text-white font-bold text-xl">
-                Academi<span className="text-gold">Test</span>
+                Entrance<span className="text-gold">vault</span>
               </span>
             </Link>
             <p className="mt-4 text-gray-300">
@@ -64,7 +64,7 @@ const Footer = () => {
             <h4 className="font-bold text-lg mb-4">Contact Us</h4>
             <ul className="space-y-2">
               <li className="text-gray-300">
-                <span className="font-medium">Email:</span> info@academitest.com
+                <span className="font-medium">Email:</span> info@entrancevault.com
               </li>
               <li className="text-gray-300">
                 <span className="font-medium">Phone:</span> +91 98765 43210
@@ -79,7 +79,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 pt-6 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} AcademiTest. All rights reserved.
+              © {new Date().getFullYear()} Entrancevault. All rights reserved.
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-gold transition-colors">
