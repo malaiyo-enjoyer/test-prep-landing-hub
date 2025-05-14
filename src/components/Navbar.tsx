@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,18 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleNavLinkClick = (sectionId: string) => {
+    setIsMobileMenuOpen(false);
+    
+    // If already on homepage, scroll to section
+    if (location.pathname === "/") {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <header
@@ -43,13 +56,40 @@ const Navbar = () => {
           <Link to="/" className="text-navy hover:text-navy-light transition-colors font-medium">
             Home
           </Link>
-          <Link to="/#services" className="text-navy hover:text-navy-light transition-colors font-medium">
+          <Link 
+            to="/#services" 
+            className="text-navy hover:text-navy-light transition-colors font-medium"
+            onClick={(e) => {
+              if (location.pathname === "/") {
+                e.preventDefault();
+                handleNavLinkClick("services");
+              }
+            }}
+          >
             Services
           </Link>
-          <Link to="/#features" className="text-navy hover:text-navy-light transition-colors font-medium">
+          <Link 
+            to="/#features" 
+            className="text-navy hover:text-navy-light transition-colors font-medium"
+            onClick={(e) => {
+              if (location.pathname === "/") {
+                e.preventDefault();
+                handleNavLinkClick("features");
+              }
+            }}
+          >
             Features
           </Link>
-          <Link to="/#testimonials" className="text-navy hover:text-navy-light transition-colors font-medium">
+          <Link 
+            to="/#testimonials" 
+            className="text-navy hover:text-navy-light transition-colors font-medium"
+            onClick={(e) => {
+              if (location.pathname === "/") {
+                e.preventDefault();
+                handleNavLinkClick("testimonials");
+              }
+            }}
+          >
             Testimonials
           </Link>
           <Link to="/contact" className="text-navy hover:text-navy-light transition-colors font-medium">
@@ -86,21 +126,30 @@ const Navbar = () => {
             <Link
               to="/#services"
               className="text-navy hover:text-navy-light transition-colors font-medium py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavLinkClick("services");
+              }}
             >
               Services
             </Link>
             <Link
               to="/#features"
               className="text-navy hover:text-navy-light transition-colors font-medium py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavLinkClick("features");
+              }}
             >
               Features
             </Link>
             <Link
               to="/#testimonials"
               className="text-navy hover:text-navy-light transition-colors font-medium py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavLinkClick("testimonials");
+              }}
             >
               Testimonials
             </Link>

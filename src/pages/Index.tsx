@@ -27,6 +27,17 @@ const Index = () => {
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial check
     
+    // Check if there's a hash in the URL and scroll to that section
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+    
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   
@@ -34,9 +45,15 @@ const Index = () => {
     <>
       <Navbar />
       <HeroSection />
-      <ServicesSection />
-      <FeaturesSection />
-      <TestimonialsSection />
+      <div id="services">
+        <ServicesSection />
+      </div>
+      <div id="features">
+        <FeaturesSection />
+      </div>
+      <div id="testimonials">
+        <TestimonialsSection />
+      </div>
       <CTASection />
       <Footer />
     </>

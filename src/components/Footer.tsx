@@ -1,8 +1,22 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Phone } from "lucide-react";
 
 const Footer = () => {
+  const location = useLocation();
+
+  const handleNavLinkClick = (sectionId: string) => {
+    // If already on homepage, scroll to section
+    if (location.pathname === "/") {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <footer className="bg-navy-dark text-white pt-12 pb-6">
       <div className="container mx-auto">
@@ -16,6 +30,10 @@ const Footer = () => {
             <p className="mt-4 text-gray-300">
               Empowering educational institutions with comprehensive test series and analytics for JEE, NEET, and GATE exams.
             </p>
+            <div className="flex items-center mt-4 text-gray-300">
+              <Phone size={18} className="mr-2" />
+              <a href="tel:+916387341428" className="hover:text-gold transition-colors">+91 6387341428</a>
+            </div>
           </div>
 
           <div>
@@ -27,17 +45,44 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/#services" className="text-gray-300 hover:text-gold transition-colors">
+                <Link 
+                  to="/#services" 
+                  className="text-gray-300 hover:text-gold transition-colors"
+                  onClick={(e) => {
+                    if (location.pathname === "/") {
+                      e.preventDefault();
+                      handleNavLinkClick("services");
+                    }
+                  }}
+                >
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/#features" className="text-gray-300 hover:text-gold transition-colors">
+                <Link 
+                  to="/#features" 
+                  className="text-gray-300 hover:text-gold transition-colors"
+                  onClick={(e) => {
+                    if (location.pathname === "/") {
+                      e.preventDefault();
+                      handleNavLinkClick("features");
+                    }
+                  }}
+                >
                   Features
                 </Link>
               </li>
               <li>
-                <Link to="/#testimonials" className="text-gray-300 hover:text-gold transition-colors">
+                <Link 
+                  to="/#testimonials" 
+                  className="text-gray-300 hover:text-gold transition-colors"
+                  onClick={(e) => {
+                    if (location.pathname === "/") {
+                      e.preventDefault();
+                      handleNavLinkClick("testimonials");
+                    }
+                  }}
+                >
                   Testimonials
                 </Link>
               </li>
