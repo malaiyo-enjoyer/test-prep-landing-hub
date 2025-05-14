@@ -13,11 +13,11 @@ const CTASection = () => {
             Ready to Transform Your Institution's Exam Results?
           </h2>
           <p className="text-lg text-gray-200 mb-8">
-            Join over 100+ leading educational institutions that trust AcademiTest to elevate their students' performance in JEE, NEET, and GATE exams.
+            Join over 100+ leading educational institutions that trust Entrancevault to elevate their students' performance in JEE, NEET, and GATE exams.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button
-              className="bg-gold hover:bg-gold-dark text-navy font-bold text-lg px-8 py-6"
+              className="bg-gradient-to-r from-gold to-gold-dark hover:from-gold-dark hover:to-gold text-navy font-bold text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300"
               asChild
             >
               <Link to="/contact">
@@ -25,7 +25,7 @@ const CTASection = () => {
               </Link>
             </Button>
             <Button
-              className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold text-lg px-8 py-6"
+              className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold text-lg px-8 py-6 shadow-md hover:shadow-lg transition-all duration-300"
               variant="outline"
               asChild
             >

@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
@@ -62,8 +62,8 @@ const ContactForm = () => {
     console.log("Form data submitted:", data);
     
     toast({
-      title: "Form Submitted",
-      description: "We've received your inquiry and will get back to you soon!",
+      title: "Form Submitted Successfully!",
+      description: "Thank you for your interest. Our team will contact you within 24 hours!",
     });
     
     form.reset();
@@ -79,9 +79,9 @@ const ContactForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Contact Person Name</FormLabel>
+                <FormLabel className="text-navy font-medium">Contact Person Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Full Name" {...field} />
+                  <Input placeholder="Full Name" {...field} className="focus:ring-2 focus:ring-navy/30 focus:border-navy" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -93,9 +93,9 @@ const ContactForm = () => {
             name="institutionName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Institution Name</FormLabel>
+                <FormLabel className="text-navy font-medium">Institution Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Name of your institution" {...field} />
+                  <Input placeholder="Name of your institution" {...field} className="focus:ring-2 focus:ring-navy/30 focus:border-navy" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -109,10 +109,10 @@ const ContactForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email Address</FormLabel>
+                <FormLabel className="text-navy font-medium">Email Address</FormLabel>
                 <FormControl>
                   <div className="relative">
-                    <Input placeholder="email@institution.com" {...field} />
+                    <Input placeholder="email@institution.com" {...field} className="focus:ring-2 focus:ring-navy/30 focus:border-navy" />
                     <Mail className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
                   </div>
                 </FormControl>
@@ -126,10 +126,10 @@ const ContactForm = () => {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone Number</FormLabel>
+                <FormLabel className="text-navy font-medium">Phone Number</FormLabel>
                 <FormControl>
                   <div className="relative">
-                    <Input placeholder="+91 98765 43210" {...field} />
+                    <Input placeholder="+91 98765 43210" {...field} className="focus:ring-2 focus:ring-navy/30 focus:border-navy" />
                     <Phone className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
                   </div>
                 </FormControl>
@@ -145,10 +145,10 @@ const ContactForm = () => {
             name="institutionType"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Institution Type</FormLabel>
+                <FormLabel className="text-navy font-medium">Institution Type</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="focus:ring-2 focus:ring-navy/30 focus:border-navy">
                       <SelectValue placeholder="Select institution type" />
                     </SelectTrigger>
                   </FormControl>
@@ -170,10 +170,10 @@ const ContactForm = () => {
             name="interestedIn"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Interested In</FormLabel>
+                <FormLabel className="text-navy font-medium">Interested In</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="focus:ring-2 focus:ring-navy/30 focus:border-navy">
                       <SelectValue placeholder="Select exam type" />
                     </SelectTrigger>
                   </FormControl>
@@ -196,11 +196,11 @@ const ContactForm = () => {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Your Message</FormLabel>
+              <FormLabel className="text-navy font-medium">Your Requirements</FormLabel>
               <FormControl>
                 <Textarea 
-                  placeholder="Tell us about your requirements and how we can help your institution..."
-                  className="min-h-[120px]"
+                  placeholder="Tell us about your institution's specific needs and how we can help improve your students' performance..."
+                  className="min-h-[120px] focus:ring-2 focus:ring-navy/30 focus:border-navy"
                   {...field}
                 />
               </FormControl>
@@ -209,13 +209,24 @@ const ContactForm = () => {
           )}
         />
 
-        <Button 
-          type="submit" 
-          className="bg-navy hover:bg-navy-light text-white w-full py-6"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Submitting..." : "Submit Inquiry"}
-        </Button>
+        <div className="pt-2">
+          <Button 
+            type="submit" 
+            className="bg-gradient-to-r from-navy to-navy-light hover:from-navy-light hover:to-navy text-white w-full py-6 text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              "Processing Your Request..."
+            ) : (
+              <>
+                Request a Consultation <ArrowRight className="ml-2 h-5 w-5" />
+              </>
+            )}
+          </Button>
+          <p className="text-center text-gray-500 mt-4 text-sm">
+            We typically respond to all inquiries within 24 business hours
+          </p>
+        </div>
       </form>
     </Form>
   );

@@ -43,15 +43,15 @@ const Navbar = () => {
           <Link to="/" className="text-navy hover:text-navy-light transition-colors font-medium">
             Home
           </Link>
-          <a href="#services" className="text-navy hover:text-navy-light transition-colors font-medium">
+          <Link to="/#services" className="text-navy hover:text-navy-light transition-colors font-medium">
             Services
-          </a>
-          <a href="#features" className="text-navy hover:text-navy-light transition-colors font-medium">
+          </Link>
+          <Link to="/#features" className="text-navy hover:text-navy-light transition-colors font-medium">
             Features
-          </a>
-          <a href="#testimonials" className="text-navy hover:text-navy-light transition-colors font-medium">
+          </Link>
+          <Link to="/#testimonials" className="text-navy hover:text-navy-light transition-colors font-medium">
             Testimonials
-          </a>
+          </Link>
           <Link to="/contact" className="text-navy hover:text-navy-light transition-colors font-medium">
             Contact
           </Link>
@@ -59,7 +59,7 @@ const Navbar = () => {
 
         <div className="hidden md:block">
           <Button className="bg-navy hover:bg-navy-light text-white">
-            Partner With Us
+            <Link to="/contact">Partner With Us</Link>
           </Button>
         </div>
 
@@ -83,27 +83,27 @@ const Navbar = () => {
             >
               Home
             </Link>
-            <a
-              href="#services"
+            <Link
+              to="/#services"
               className="text-navy hover:text-navy-light transition-colors font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Services
-            </a>
-            <a
-              href="#features"
+            </Link>
+            <Link
+              to="/#features"
               className="text-navy hover:text-navy-light transition-colors font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Features
-            </a>
-            <a
-              href="#testimonials"
+            </Link>
+            <Link
+              to="/#testimonials"
               className="text-navy hover:text-navy-light transition-colors font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Testimonials
-            </a>
+            </Link>
             <Link
               to="/contact"
               className="text-navy hover:text-navy-light transition-colors font-medium py-2"
@@ -112,7 +112,7 @@ const Navbar = () => {
               Contact
             </Link>
             <Button className="bg-navy hover:bg-navy-light text-white w-full">
-              Partner With Us
+              <Link to="/contact">Partner With Us</Link>
             </Button>
           </nav>
         </div>
