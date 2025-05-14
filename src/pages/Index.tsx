@@ -11,8 +11,13 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   const location = useLocation();
+  
+  console.log("Index page rendering, current location:", location);
 
   useEffect(() => {
+    // Log that component mounted successfully
+    console.log("Index component mounted");
+    
     const handleScroll = () => {
       const reveals = document.querySelectorAll(".reveal");
       
