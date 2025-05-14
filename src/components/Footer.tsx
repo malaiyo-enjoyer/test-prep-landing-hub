@@ -1,11 +1,11 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Phone } from "lucide-react";
 
 const Footer = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleNavLinkClick = (sectionId: string) => {
     // If already on homepage, scroll to section
@@ -14,6 +14,9 @@ const Footer = () => {
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+    } else {
+      // If not on homepage, navigate to homepage with section hash
+      navigate(`/#${sectionId}`);
     }
   };
 
@@ -45,46 +48,28 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/#services" 
-                  className="text-gray-300 hover:text-gold transition-colors"
-                  onClick={(e) => {
-                    if (location.pathname === "/") {
-                      e.preventDefault();
-                      handleNavLinkClick("services");
-                    }
-                  }}
+                <button 
+                  onClick={() => handleNavLinkClick("services")} 
+                  className="text-gray-300 hover:text-gold transition-colors bg-transparent border-none cursor-pointer p-0"
                 >
                   Services
-                </Link>
+                </button>
               </li>
               <li>
-                <Link 
-                  to="/#features" 
-                  className="text-gray-300 hover:text-gold transition-colors"
-                  onClick={(e) => {
-                    if (location.pathname === "/") {
-                      e.preventDefault();
-                      handleNavLinkClick("features");
-                    }
-                  }}
+                <button 
+                  onClick={() => handleNavLinkClick("features")} 
+                  className="text-gray-300 hover:text-gold transition-colors bg-transparent border-none cursor-pointer p-0"
                 >
                   Features
-                </Link>
+                </button>
               </li>
               <li>
-                <Link 
-                  to="/#testimonials" 
-                  className="text-gray-300 hover:text-gold transition-colors"
-                  onClick={(e) => {
-                    if (location.pathname === "/") {
-                      e.preventDefault();
-                      handleNavLinkClick("testimonials");
-                    }
-                  }}
+                <button 
+                  onClick={() => handleNavLinkClick("testimonials")} 
+                  className="text-gray-300 hover:text-gold transition-colors bg-transparent border-none cursor-pointer p-0"
                 >
                   Testimonials
-                </Link>
+                </button>
               </li>
               <li>
                 <Link to="/contact" className="text-gray-300 hover:text-gold transition-colors">

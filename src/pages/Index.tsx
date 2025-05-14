@@ -1,5 +1,6 @@
 
 import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -9,6 +10,8 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  const location = useLocation();
+
   useEffect(() => {
     const handleScroll = () => {
       const reveals = document.querySelectorAll(".reveal");
@@ -28,8 +31,8 @@ const Index = () => {
     handleScroll(); // Initial check
     
     // Check if there's a hash in the URL and scroll to that section
-    if (window.location.hash) {
-      const id = window.location.hash.substring(1);
+    if (location.hash) {
+      const id = location.hash.substring(1);
       const element = document.getElementById(id);
       if (element) {
         setTimeout(() => {
@@ -39,7 +42,7 @@ const Index = () => {
     }
     
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location]);
   
   return (
     <>

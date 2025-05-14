@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
@@ -8,6 +8,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +34,9 @@ const Navbar = () => {
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+    } else {
+      // If not on homepage, navigate to homepage with section hash
+      navigate(`/#${sectionId}`);
     }
   };
 
@@ -56,42 +60,24 @@ const Navbar = () => {
           <Link to="/" className="text-navy hover:text-navy-light transition-colors font-medium">
             Home
           </Link>
-          <Link 
-            to="/#services" 
-            className="text-navy hover:text-navy-light transition-colors font-medium"
-            onClick={(e) => {
-              if (location.pathname === "/") {
-                e.preventDefault();
-                handleNavLinkClick("services");
-              }
-            }}
+          <button 
+            onClick={() => handleNavLinkClick("services")} 
+            className="text-navy hover:text-navy-light transition-colors font-medium bg-transparent border-none cursor-pointer"
           >
             Services
-          </Link>
-          <Link 
-            to="/#features" 
-            className="text-navy hover:text-navy-light transition-colors font-medium"
-            onClick={(e) => {
-              if (location.pathname === "/") {
-                e.preventDefault();
-                handleNavLinkClick("features");
-              }
-            }}
+          </button>
+          <button 
+            onClick={() => handleNavLinkClick("features")} 
+            className="text-navy hover:text-navy-light transition-colors font-medium bg-transparent border-none cursor-pointer"
           >
             Features
-          </Link>
-          <Link 
-            to="/#testimonials" 
-            className="text-navy hover:text-navy-light transition-colors font-medium"
-            onClick={(e) => {
-              if (location.pathname === "/") {
-                e.preventDefault();
-                handleNavLinkClick("testimonials");
-              }
-            }}
+          </button>
+          <button 
+            onClick={() => handleNavLinkClick("testimonials")} 
+            className="text-navy hover:text-navy-light transition-colors font-medium bg-transparent border-none cursor-pointer"
           >
             Testimonials
-          </Link>
+          </button>
           <Link to="/contact" className="text-navy hover:text-navy-light transition-colors font-medium">
             Contact
           </Link>
@@ -123,36 +109,24 @@ const Navbar = () => {
             >
               Home
             </Link>
-            <Link
-              to="/#services"
-              className="text-navy hover:text-navy-light transition-colors font-medium py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("services");
-              }}
+            <button
+              onClick={() => handleNavLinkClick("services")}
+              className="text-navy hover:text-navy-light transition-colors font-medium py-2 text-left bg-transparent border-none cursor-pointer"
             >
               Services
-            </Link>
-            <Link
-              to="/#features"
-              className="text-navy hover:text-navy-light transition-colors font-medium py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("features");
-              }}
+            </button>
+            <button
+              onClick={() => handleNavLinkClick("features")}
+              className="text-navy hover:text-navy-light transition-colors font-medium py-2 text-left bg-transparent border-none cursor-pointer"
             >
               Features
-            </Link>
-            <Link
-              to="/#testimonials"
-              className="text-navy hover:text-navy-light transition-colors font-medium py-2"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("testimonials");
-              }}
+            </button>
+            <button
+              onClick={() => handleNavLinkClick("testimonials")}
+              className="text-navy hover:text-navy-light transition-colors font-medium py-2 text-left bg-transparent border-none cursor-pointer"
             >
               Testimonials
-            </Link>
+            </button>
             <Link
               to="/contact"
               className="text-navy hover:text-navy-light transition-colors font-medium py-2"
