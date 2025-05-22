@@ -23,6 +23,9 @@ import {
 } from "@/components/ui/select";
 import { Mail, Phone, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { db } from "@/firebase/firebase";
+
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -55,19 +58,58 @@ const ContactForm = () => {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    console.log("Form data submitted:", data);
-    
-    toast({
-      title: "Form Submitted Successfully!",
-      description: "Thank you for your interest. Our team will contact you within 24 hours!",
-    });
-    
-    form.reset();
-    setIsSubmitting(false);
+
+    const web3Data = {
+      access_key: import.meta.env.VITE_WEB3FORMS_API_KEY,
+      subject: "New Lead from Test Prep Landing Hub",
+      website: "https://test-prep-landing-hub.vercel.app",
+      from_name:"Entrancevault",
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      institutionName: data.institutionName,
+      institutionType: data.institutionType,
+      interestedIn: data.interestedIn,
+      message: data.message,
+    };
+
+
+    try {
+      await addDoc(collection(db, "contact-us"), {
+        ...data,
+        createdAt: Timestamp.now(),
+      });
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(web3Data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Form Submitted Successfully!",
+          description: "Thank you for your interest. Our team will contact you within 24 hours!",
+        });
+
+        form.reset();
+      } else {
+        throw new Error(result.message || "Web3Forms submission failed.");
+      }
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+      console.error("Error adding document: ", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -87,7 +129,7 @@ const ContactForm = () => {
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="institutionName"
@@ -120,7 +162,7 @@ const ContactForm = () => {
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="phone"
@@ -164,7 +206,7 @@ const ContactForm = () => {
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="interestedIn"
@@ -190,7 +232,7 @@ const ContactForm = () => {
             )}
           />
         </div>
-        
+
         <FormField
           control={form.control}
           name="message"
@@ -198,7 +240,7 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel className="text-navy font-medium">Your Requirements</FormLabel>
               <FormControl>
-                <Textarea 
+                <Textarea
                   placeholder="Tell us about your institution's specific needs and how we can help improve your students' performance..."
                   className="min-h-[120px] focus:ring-2 focus:ring-navy/30 focus:border-navy"
                   {...field}
@@ -210,8 +252,8 @@ const ContactForm = () => {
         />
 
         <div className="pt-2">
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             className="bg-gradient-to-r from-navy to-navy-light hover:from-navy-light hover:to-navy text-white w-full py-6 text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
             disabled={isSubmitting}
           >
