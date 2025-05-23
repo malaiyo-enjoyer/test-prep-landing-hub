@@ -10,7 +10,7 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="order-2 lg:order-1 animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-navy mb-4">
-              Elevate Your Institution's{" "}
+              Elevate Your Institution's
               <span className="bg-gradient-to-r from-gold-dark to-gold bg-clip-text text-transparent">Exam Success</span> Rates
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8">
